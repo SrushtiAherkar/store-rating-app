@@ -75,68 +75,84 @@ export default function Signup() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Signup</h2>
-      <form onSubmit={handleSubmit} style={{ maxWidth: 520 }}>
-        <div style={{ marginBottom: 8 }}>
-          <input
-            name="name"
-            placeholder="Full Name (20-60 chars)"
-            value={form.name}
-            onChange={handleChange}
-            style={{ width: "100%", padding: 8 }}
-            required
-          />
-        </div>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6 font-sans">
+      <div className="card w-full max-w-lg shadow-xl border-t-8 border-t-brand">
+        <h2 className="text-3xl font-black text-secondary mb-8 text-center uppercase tracking-tight">Create Account</h2>
 
-        <div style={{ marginBottom: 8 }}>
-          <input
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            style={{ width: "100%", padding: 8 }}
-            type="email"
-            required
-          />
-        </div>
+        {error && (
+          <div className="bg-red-50 border-l-4 border-brand text-brand p-4 mb-6 rounded-md font-medium text-sm">
+            {error}
+          </div>
+        )}
 
-        <div style={{ marginBottom: 8 }}>
-          <textarea
-            name="address"
-            placeholder="Address (max 400 chars)"
-            value={form.address}
-            onChange={handleChange}
-            style={{ width: "100%", padding: 8, minHeight: 80 }}
-          />
-        </div>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Full Name</label>
+            <input
+              name="name"
+              placeholder="Full Name (20-60 chars)"
+              value={form.name}
+              onChange={handleChange}
+              className="input-field"
+              required
+            />
+          </div>
 
-        <div style={{ marginBottom: 8 }}>
-          <input
-            name="password"
-            placeholder="Password (8-16 chars, 1 uppercase, 1 special)"
-            value={form.password}
-            onChange={handleChange}
-            style={{ width: "100%", padding: 8 }}
-            type="password"
-            required
-          />
-        </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Email</label>
+            <input
+              name="email"
+              placeholder="Email Address"
+              value={form.email}
+              onChange={handleChange}
+              className="input-field"
+              type="email"
+              required
+            />
+          </div>
 
-        <div style={{ marginBottom: 12 }}>
-          <label style={{ display: "block", marginBottom: 6 }}>Register as</label>
-          <select name="role" value={form.role} onChange={handleChange} style={{ padding: 8 }}>
-            <option value="user">Normal User</option>
-            <option value="owner">Store Owner</option>
-          </select>
-        </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Address</label>
+            <textarea
+              name="address"
+              placeholder="Address (max 400 chars)"
+              value={form.address}
+              onChange={handleChange}
+              className="input-field min-h-[100px]"
+            />
+          </div>
 
-        {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Password</label>
+              <input
+                name="password"
+                placeholder="8-16 chars, Uppercase, Special"
+                value={form.password}
+                onChange={handleChange}
+                className="input-field"
+                type="password"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Register As</label>
+              <select name="role" value={form.role} onChange={handleChange} className="input-field bg-white">
+                <option value="user">Normal User</option>
+                <option value="owner">Store Owner</option>
+              </select>
+            </div>
+          </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Signing up..." : "Sign up"}
-        </button>
-      </form>
+          <button type="submit" disabled={loading} className="btn-primary w-full py-3 text-lg mt-4 font-bold shadow-lg shadow-brand/20">
+            {loading ? "Signing up..." : "Sign Up"}
+          </button>
+        </form>
+        <p className="mt-6 text-center text-gray-400 text-sm">
+          Already have an account? <a href="/" className="text-brand font-bold hover:underline">Login here</a>
+        </p>
+      </div>
     </div>
   );
+
 }

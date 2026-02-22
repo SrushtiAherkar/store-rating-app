@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import storeRoutes from "./routes/storeRoutes.js";
 import ratingRoutes from "./routes/ratingRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -16,7 +17,11 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/stores", storeRoutes);
+app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
+app.use("/stores", storeRoutes);
 app.use("/ratings", ratingRoutes);
+app.use("/admin", adminRoutes);
 
 sequelize.sync().then(() => {
   app.listen(process.env.PORT || 5000, () =>
